@@ -1,3 +1,5 @@
+#type-casting and mathematical operations
+
 print("Welcome to the tip calculator!")
 bill = float(input("What amount was your bill? $")) 
 percent = int(input("What percent would you like to tip? "))
