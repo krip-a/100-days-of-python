@@ -26,9 +26,9 @@ def check_resources(coffee_type):
     """check is the resource bank has enough ingredients"""
     water, milk, coffee, _ = get_resources(coffee_type)
     missing =(
-            "water" if water >= resources["water"] 
-            else "milk" if milk >= resources["milk"]
-            else "coffee" if coffee >= resources["coffee"]
+            "water" if water > resources["water"] 
+            else "milk" if milk > resources["milk"]
+            else "coffee" if coffee > resources["coffee"]
             else "none"
         )
     if missing == "none":
@@ -46,7 +46,7 @@ def insert_and_check_coins(price):
     pennies = int(input("How many pennies are you inserting? "))
     total_amount = (quarters*0.25) + (dimes*0.10) + (nickles*0.05) + (pennies*0.01)
        
-    if total_amount > price:
+    if total_amount >= price:
         change = total_amount - price
         print(f"\nYour change is ${change: .2f}")
         update_piggybank(price)
@@ -55,7 +55,7 @@ def insert_and_check_coins(price):
         print("\n"*10)
         print("Sorry, the coins you inserted are too low.")
         print("Your coins will be returned. Insert Again.")
-        insert_and_check_coins(price)
+        return insert_and_check_coins(price)
 
 def make_coffee(coffee_type):
     water, milk, coffee, _ = get_resources(coffee_type)
@@ -77,26 +77,12 @@ def main():
             print(f"\tCoffee: {resources["coffee"]}g")
             print(f"\tMoney: ${money}")
 
-        elif product == "espresso":
-            if check_resources("espresso"):
-                _, _, _, price = get_resources("espresso")
+        elif product == "espresso" or product == "latte" or product == "cappuccino":
+            if check_resources(product):
+                _, _, _, price = get_resources(product)
                 enough_money = insert_and_check_coins(price)
                 if enough_money:
-                    make_coffee("espresso")
-            
-        elif product == "latte":
-            if check_resources("latte"):
-                _, _, _, price = get_resources("latte")
-                enough_money = insert_and_check_coins(price)
-                if enough_money:
-                    make_coffee("latte")         
-
-        elif product == "cappuccino":
-            if check_resources("cappuccino"):
-                _, _, _, price = get_resources("cappuccino")
-                enough_money = insert_and_check_coins(price)
-                if enough_money:
-                    make_coffee("cappuccino")
+                    make_coffee(product)          
             
         elif product == "off":
             mode_on = False
