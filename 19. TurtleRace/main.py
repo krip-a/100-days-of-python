@@ -1,10 +1,10 @@
 import turtle as t
 import random
 
-screen = t.Screen()
-screen.setup(width = 500, height = 400)
-screen.title("TURTLE RACE!!!!")
-screen.bgcolor("black")
+screen = t.Screen()                         # a new screen
+screen.setup(width = 500, height = 400)     #set the screen size to 500x400
+screen.title("TURTLE RACE!!!!")             #name the screen
+screen.bgcolor("black")                     #set the screen color to black
 user_bet = screen.textinput("Make your bet!", "Which turtle will win? Type a color.")
 
 colors = ["red", "blue", "yellow", "green", "orange", "purple"]
