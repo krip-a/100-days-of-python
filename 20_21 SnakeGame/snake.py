@@ -18,12 +18,25 @@ class Snake:
         """creates a snake (3 turtle segments)"""
         #create a snake w 3 segments
         for position in STARTING_POSITIONS:
+            self.add_segment(position)
+    
+    def add_segment(self, position):
+            """add a new segment to existing snake"""
             new_segment = t.Turtle(shape = "square")
             new_segment.penup()
             new_segment.color("white")
             new_segment.goto(position)
             self.segments.append(new_segment)
+    
+    def extend(self):
+        """extend the snake"""
+        #add a new segment to snake
 
+        #get the list of segments and get the last position
+        #add a new segment to/after that position
+    
+        self.add_segment(self.segments[-1].position())     
+       
     def move(self):
         """moves the snake forward 20 paces"""    
         #turning\
