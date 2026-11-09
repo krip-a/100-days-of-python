@@ -51,6 +51,15 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
+    def reset(self):
+        """reset the snake in initial position if ded"""
+        for segment in self.segments:
+            segment.goto(1000, 1000)
+        
+        self.segments.clear()           #clear all segments inlist
+        self.create_snake()             #create a new 3 segment snake
+        self.head = self.segments[0]
+
     #if facing up, can't turn down and vice versa
     #if facing left, can't turn right and vice versa
     
